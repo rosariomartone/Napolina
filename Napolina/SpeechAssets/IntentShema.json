@@ -1,0 +1,23 @@
+﻿{
+    "intents": 
+    [
+        {
+            "intent": "SearchWordIntent"
+        },
+        {
+            "intent": "NewWordIntent"
+        },
+        {
+            "intent": "CancelWordIntent"
+        },
+        {
+            "intent": "AMAZON.CancelIntent"
+        },
+        {
+            "intent": "AMAZON.StopIntent"
+        },
+        {
+            "intent": "AMAZON.HelpIntent"
+        }
+    ]
+}

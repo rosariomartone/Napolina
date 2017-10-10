@@ -1,0 +1,11 @@
+﻿SearchWordIntent search
+
+NewWordIntent add
+
+CancelWordIntent delete
+
+AMAZON.CancelIntent cancel
+
+AMAZON.StopIntent stop
+
+AMAZON.HelpIntent help
