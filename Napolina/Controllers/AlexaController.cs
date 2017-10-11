@@ -29,19 +29,26 @@ namespace Napolina.Controllers
             request.Version = alexaRequest.Version;
             request.Type = alexaRequest.Request.Type;
             request.Reason = alexaRequest.Request.Reason;
-            //request.SlotsList = alexaRequest.Request.Intent.GetSlots();
+            request.Slots = alexaRequest.Request.Intent.Slots;
             request.DateCreated = DateTime.UtcNow;
 
             switch (request.Type)
             {
                 case "LaunchRequest":
                     response = LaunchRequestHandler(request);
+
                     break;
                 case "IntentRequest":
                     response = IntentRequestHandler(request);
+
                     break;
                 case "SessionEndedRequest":
                     response = SessionEndedRequestHandler(request);
+
+                    break;
+                default:
+                    response = SearchWordNotMatchIntent(request);
+
                     break;
             }
 
@@ -73,6 +80,14 @@ namespace Napolina.Controllers
                     response = SearchWordIntentHandler(request);
 
                     break;
+                case "SearchWordMatchIntent":
+                    response = SearchWordMatchIntent(request);
+
+                    break;
+                case "SearchWordNotMatchIntent":
+                    response = SearchWordNotMatchIntent(request);
+
+                    break;
                 case "AMAZON.CancelIntent":
                 case "AMAZON.StopIntent":
                     response = CancelOrStopIntentHandler(request);
@@ -81,6 +96,21 @@ namespace Napolina.Controllers
                     response = HelpIntent(request);
                     break;
             }
+
+            return response;
+        }
+
+        private AlexaResponse SearchWordNotMatchIntent(Request request)
+        {
+            var response = new AlexaResponse("Hi, you are not welcome in UK!", true);
+
+            return response;
+        }
+
+        private AlexaResponse SearchWordMatchIntent(Request request)
+        {
+            var response = new AlexaResponse("Hi, you are more then welcome in UK!", false);
+            response.Response.Reprompt.OutputSpeech.Text = "Any other word to translate?";
 
             return response;
         }

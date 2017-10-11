@@ -1,11 +1,9 @@
 ﻿SearchWordIntent search
-
+SearchWordMatchIntent Rosario
+SearchWordMatchIntent Katya
+SearchWordNotMatchIntent Claudio
 NewWordIntent add
-
 CancelWordIntent delete
-
 AMAZON.CancelIntent cancel
-
 AMAZON.StopIntent stop
-
 AMAZON.HelpIntent help
