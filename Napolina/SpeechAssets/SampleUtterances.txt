@@ -1,7 +1,7 @@
 ﻿SearchWordIntent search
 SearchWordMatchIntent Rosario
 SearchWordMatchIntent Katya
-SearchWordNotMatchIntent Claudio
+SearchWordNotMatchIntent {Criteria}
 NewWordIntent add
 CancelWordIntent delete
 AMAZON.CancelIntent cancel

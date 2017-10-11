@@ -102,7 +102,8 @@ namespace Napolina.Controllers
 
         private AlexaResponse SearchWordNotMatchIntent(Request request)
         {
-            var response = new AlexaResponse("Hi, you are not welcome in UK!", true);
+            var response = new AlexaResponse("Hi, you are not welcome in UK!", false);
+            response.Response.Reprompt.OutputSpeech.Text = "Any other word to translate?";
 
             return response;
         }
