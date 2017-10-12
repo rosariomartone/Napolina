@@ -1,34 +1,41 @@
 ﻿{
   "intents": [
     {
-      "intent": "SearchWordIntent"
+      "intent": "SearchWordIntent",
+      "slots": []
     },
     {
-      "intent": "SearchWordMatchIntent"
+      "intent": "SearchWordMatchIntent",
+      "slots": []
     },
     {
+      "intent": "SearchWordNotMatchIntent",
       "slots": [
         {
           "name": "Criteria",
           "type": "CRITERIA"
         }
-      ],
-      "intent": "SearchWordNotMatchIntent"
+      ]
     },
     {
-      "intent": "NewWordIntent"
+      "intent": "NewWordIntent",
+      "slots": []
     },
     {
-      "intent": "CancelWordIntent"
+      "intent": "CancelWordIntent",
+      "slots": []
     },
     {
-      "intent": "AMAZON.CancelIntent"
+      "intent": "AMAZON.CancelIntent",
+      "slots": []
     },
     {
-      "intent": "AMAZON.StopIntent"
+      "intent": "AMAZON.StopIntent",
+      "slots": []
     },
     {
-      "intent": "AMAZON.HelpIntent"
+      "intent": "AMAZON.HelpIntent",
+      "slots": []
     }
   ]
 }

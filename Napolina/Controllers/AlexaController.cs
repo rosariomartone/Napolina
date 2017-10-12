@@ -29,7 +29,7 @@ namespace Napolina.Controllers
             request.Version = alexaRequest.Version;
             request.Type = alexaRequest.Request.Type;
             request.Reason = alexaRequest.Request.Reason;
-            request.Slots = alexaRequest.Request.Intent.Slots;
+            request.SlotsList = alexaRequest.Request.Intent.GetSlots();
             request.DateCreated = DateTime.UtcNow;
 
             switch (request.Type)
@@ -102,7 +102,29 @@ namespace Napolina.Controllers
 
         private AlexaResponse SearchWordNotMatchIntent(Request request)
         {
-            var response = new AlexaResponse("Hi, you are not welcome in UK!", false);
+            String slot = string.Empty;
+
+            if (request.Slots != null)
+                slot = request.Slots.Split(',')[0].Split('|')[0].ToString();
+
+            AlexaResponse response = new AlexaResponse();
+
+            switch (slot)
+            {
+                case "Anna":
+                    response = new AlexaResponse(slot + " is Katya's Mum, she is welcome in UK!", false);
+
+                    break;
+                case "Claudio":
+                    response = new AlexaResponse(slot + " is Katya's brother, he is welcome in UK!", false);
+
+                    break;
+                case "Mary":
+                    response = new AlexaResponse(slot + " is Katya's best friend, she is welcome in UK!", false);
+
+                    break;
+            }
+
             response.Response.Reprompt.OutputSpeech.Text = "Any other word to translate?";
 
             return response;
@@ -144,7 +166,7 @@ namespace Napolina.Controllers
 
         private AlexaResponse SessionEndedRequestHandler(Request request)
         {
-            return null;
+            return new AlexaResponse("Session ending, bye!", true);
         }
     }
 }
