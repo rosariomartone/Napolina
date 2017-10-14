@@ -1,4 +1,5 @@
-﻿{
+﻿//Napolina
+{
   "intents": [
     {
       "intent": "SearchWordIntent",
@@ -41,6 +42,30 @@
     {
       "intent": "AMAZON.HelpIntent",
       "slots": []
+    }
+  ]
+}
+
+//Tombolina
+{
+  "intents": [
+    {
+      "intent": "SearchWordIntent",
+      "slots": [
+        {
+          "name": "Criteria",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
     }
   ]
 }

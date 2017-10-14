@@ -1,4 +1,6 @@
-﻿SearchWordIntent search
+﻿Napolina
+---------------------------------------------
+SearchWordIntent search
 
 SearchWordMatchIntent Rosario
 SearchWordMatchIntent Katya
@@ -14,4 +16,12 @@ AMAZON.CancelIntent cancel
 
 AMAZON.StopIntent stop
 
+AMAZON.HelpIntent help
+
+
+Tombolina
+--------------------------------------------
+SearchWordIntent {Criteria}
+AMAZON.CancelIntent cancel
+AMAZON.StopIntent stop
 AMAZON.HelpIntent help
