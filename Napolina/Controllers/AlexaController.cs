@@ -57,11 +57,13 @@ namespace Napolina.Controllers
 
         private AlexaResponse LaunchRequestHandler(Request request)
         {
-            var response = new AlexaResponse("Welcome to Napolina. What would you like to do, add a new Word, search for a word or cancel a word?");
+            //var response = new AlexaResponse("Welcome to Napolina. What would you like to do, add a new Word, search for a word or cancel a word?");
+            var response = new AlexaResponse("Welcome to Napolina. Who would you like to search today?");
             response.Session.MemberId = request.MemberId;
             response.Response.Card.Title = "Napolina";
             response.Response.Card.Content = "Hello\nNapolina!";
-            response.Response.Reprompt.OutputSpeech.Text = "Please pick one, Add, Search or Delete Word?";
+            //response.Response.Reprompt.OutputSpeech.Text = "Please pick one, Add, Search or Delete Word?";
+            response.Response.Reprompt.OutputSpeech.Text = "Please, who would you like to search today?";
             response.Response.ShouldEndSession = false;
 
             return response;
@@ -105,7 +107,7 @@ namespace Napolina.Controllers
             String slot = string.Empty;
 
             if (request.Slots != null)
-                slot = request.Slots.Split(',')[0].Split('|')[0].ToString();
+                slot = request.Slots.Split(',')[0].Split('|')[1].ToString();
 
             AlexaResponse response = new AlexaResponse();
 
@@ -121,6 +123,13 @@ namespace Napolina.Controllers
                     break;
                 case "Mary":
                     response = new AlexaResponse(slot + " is Katya's best friend, she is welcome in UK!", false);
+
+                    break;
+                default:
+                    if(slot.Equals("Katya") || slot.Equals("Rosario"))
+                        response = new AlexaResponse("Hi, you are more then welcome in UK!", false);
+                    else
+                        response = new AlexaResponse("Sorry, I don't know who " + slot + " is!", false);
 
                     break;
             }

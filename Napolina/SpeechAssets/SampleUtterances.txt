@@ -4,6 +4,7 @@ SearchWordMatchIntent Rosario
 SearchWordMatchIntent Katya
 
 SearchWordNotMatchIntent Who is {Criteria}
+SearchWordNotMatchIntent {Criteria}
 
 NewWordIntent add
 
