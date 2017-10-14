@@ -146,7 +146,7 @@ namespace Napolina.Controllers
 
         private AlexaResponse LaunchRequestHandler(Request request)
         {
-            var response = new AlexaResponse("Welcome to Tombolina. Which number did you extract? I will translate it in napoletan classic Tombola");
+           var response = new AlexaResponse("Welcome to Tombola. Give me a number and I will translate it in napoletan classic Tombola");
             response.Session.MemberId = request.MemberId;
             response.Response.Card.Title = "Tombolina";
             response.Response.Card.Content = "Hello\nTombolina!";
@@ -187,7 +187,16 @@ namespace Napolina.Controllers
                 slot = request.Slots.Split(',')[0].Split('|')[1].ToString();
 
             if (!slot.Equals(string.Empty))
-                number = int.Parse(slot);
+            {
+                try
+                {
+                    number = int.Parse(slot);
+                }
+                catch(Exception ex)
+                {
+                    number = 0;
+                }
+            }
 
             Hashtable tombola = getTombola();
 
