@@ -6,7 +6,12 @@
     },
     {
       "intent": "SearchWordMatchIntent",
-      "slots": []
+      "slots": [
+        {
+          "name": "Criteria",
+          "type": "CRITERIA"
+        }
+      ]
     },
     {
       "intent": "SearchWordNotMatchIntent",

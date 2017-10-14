@@ -102,6 +102,26 @@ namespace Napolina.Controllers
             return response;
         }
 
+        private AlexaResponse SearchWordIntentHandler(Request request)
+        {
+            var output = new StringBuilder("Ok, which english word you would like to search?");
+
+            return new AlexaResponse(output.ToString(), false);
+        }
+
+        private AlexaResponse SearchWordMatchIntent(Request request)
+        {
+            String slot = string.Empty;
+
+            if (request.Slots != null)
+                slot = request.Slots.Split(',')[0].Split('|')[1].ToString();
+
+            var response = new AlexaResponse("Hi " + slot + ", you are more then welcome in UK!", false);
+            response.Response.Reprompt.OutputSpeech.Text = "Any other word to translate?";
+
+            return response;
+        }
+
         private AlexaResponse SearchWordNotMatchIntent(Request request)
         {
             String slot = string.Empty;
@@ -125,11 +145,12 @@ namespace Napolina.Controllers
                     response = new AlexaResponse(slot + " is Katya's best friend, she is welcome in UK!", false);
 
                     break;
+                case "Carlo":
+                    response = new AlexaResponse(slot + " is Katya's dad, he is welcome in UK!", false);
+
+                    break;
                 default:
-                    if(slot.Equals("Katya") || slot.Equals("Rosario"))
-                        response = new AlexaResponse("Hi, you are more then welcome in UK!", false);
-                    else
-                        response = new AlexaResponse("Sorry, I don't know who " + slot + " is!", false);
+                    response = new AlexaResponse("Nun te such proprie!", false);
 
                     break;
             }
@@ -139,24 +160,9 @@ namespace Napolina.Controllers
             return response;
         }
 
-        private AlexaResponse SearchWordMatchIntent(Request request)
-        {
-            var response = new AlexaResponse("Hi, you are more then welcome in UK!", false);
-            response.Response.Reprompt.OutputSpeech.Text = "Any other word to translate?";
-
-            return response;
-        }
-
         private AlexaResponse NewWordIntentHandler(Request request)
         {
             var output = new StringBuilder("OK, which english word would you like to add?");
-
-            return new AlexaResponse(output.ToString(), false);
-        }
-
-        private AlexaResponse SearchWordIntentHandler(Request request)
-        {
-            var output = new StringBuilder("Ok, which english word you would like to search?");
 
             return new AlexaResponse(output.ToString(), false);
         }
