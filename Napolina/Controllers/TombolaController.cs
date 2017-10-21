@@ -203,7 +203,7 @@ namespace Napolina.Controllers
             AlexaResponse response = new AlexaResponse();
 
             if (number > 0 && number < 91)
-                response = new AlexaResponse(tombola[number].ToString(), false);
+                response = new AlexaResponse(tombola[number].ToString() + ". Give me another number please", false);
             else
                 response = new AlexaResponse("Stupid, o nummer deve sta tra uno e nuvant!", false);
 
@@ -214,7 +214,9 @@ namespace Napolina.Controllers
 
         private AlexaResponse HelpIntent(Request request)
         {
-            var response = new AlexaResponse("To use the Tombolina skill, you can say, Alexa, ask Tombolina for play. You can also say, Alexa, stop or Alexa, cancel, at any time to exit the Tombolina skill. For now, which number did you extract?", false);
+            var response = new AlexaResponse("To use the Tombola Naples skill, you just need to say a " +
+                "number between 1 and 90. You can also say, Alexa, stop or Alexa, cancel, at any " +
+                "time to exit the Tombola Naples skill. For now, which number did you extract?", false);
             response.Response.Reprompt.OutputSpeech.Text = "Jamme, catch stu number!";
             return response;
         }
