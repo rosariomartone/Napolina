@@ -51,13 +51,13 @@ namespace Napolina.Controllers
         {
             Hashtable tombola = new Hashtable();
             tombola.Add(1, "Italy");
-            tombola.Add(2, "A criatura");
-            tombola.Add(3, "A jatta");
-            tombola.Add(4, "O puork");
-            tombola.Add(5, "A mano");
-            tombola.Add(6, "Chella che guarda nterra");
-            tombola.Add(7, "A scuppetta");
-            tombola.Add(8, "A maronna");
+            tombola.Add(2, "A criatura. The child.");
+            tombola.Add(3, "A jatta. The cat.");
+            tombola.Add(4, "O puork. The pig.");
+            tombola.Add(5, "A mano. The hand.");
+            tombola.Add(6, "Chella che guarda nterra. The sweet potato.");
+            tombola.Add(7, "A scuppetta. ");
+            tombola.Add(8, "A maronna. Madonna.");
             tombola.Add(9, "A figliata");
             tombola.Add(10, "E fasule");
             tombola.Add(11, "E surice");
@@ -146,10 +146,10 @@ namespace Napolina.Controllers
 
         private AlexaResponse LaunchRequestHandler(Request request)
         {
-           var response = new AlexaResponse("Welcome to Tombola. Give me a number and I will translate it in napoletan classic Tombola");
+           var response = new AlexaResponse("Welcome to Tombola Naples. Give me a number and I will translate it in napoletan classic Tombola");
             response.Session.MemberId = request.MemberId;
-            response.Response.Card.Title = "Tombolina";
-            response.Response.Card.Content = "Hello\nTombolina!";
+            response.Response.Card.Title = "Tombola Naples";
+            response.Response.Card.Content = "Hello\nTombola Nales!";
             response.Response.Reprompt.OutputSpeech.Text = "Jamme, catch stu number!";
             response.Response.ShouldEndSession = false;
 
