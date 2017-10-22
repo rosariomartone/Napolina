@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Web.Http;
+using AlexaSkillsKit.Authentication;
+using System.Net.Http;
+using System.Net;
 
 namespace Napolina.Controllers
 {
@@ -13,38 +16,43 @@ namespace Napolina.Controllers
         {
             AlexaResponse response = null;
 
-            Request request = new Data.Request();
-            request.MemberId = (alexaRequest.Session.Attributes == null) ? 0 : alexaRequest.Session.Attributes.MemberId;
-            request.Timestamp = alexaRequest.Request.Timestamp;
-            request.Intent = (alexaRequest.Request.Intent == null) ? "" : alexaRequest.Request.Intent.Name;
-            request.AppId = alexaRequest.Session.Application.ApplicationId;
-            request.RequestId = alexaRequest.Request.RequestId;
-            request.SessionId = alexaRequest.Session.SessionId;
-            request.UserId = alexaRequest.Session.User.UserId;
-            request.IsNew = alexaRequest.Session.New;
-            request.Version = alexaRequest.Version;
-            request.Type = alexaRequest.Request.Type;
-            request.Reason = alexaRequest.Request.Reason;
-            request.SlotsList = alexaRequest.Request.Intent.GetSlots();
-            request.DateCreated = DateTime.UtcNow;
-
-            switch (request.Type)
+            if(SpeechletRequestSignatureVerifier.VerifyCertificateUrl(this.Request.RequestUri.AbsoluteUri))
             {
-                case "LaunchRequest":
-                    response = LaunchRequestHandler(request);
+                Request request = new Data.Request();
+                request.MemberId = (alexaRequest.Session.Attributes == null) ? 0 : alexaRequest.Session.Attributes.MemberId;
+                request.Timestamp = alexaRequest.Request.Timestamp;
+                request.Intent = (alexaRequest.Request.Intent == null) ? "" : alexaRequest.Request.Intent.Name;
+                request.AppId = alexaRequest.Session.Application.ApplicationId;
+                request.RequestId = alexaRequest.Request.RequestId;
+                request.SessionId = alexaRequest.Session.SessionId;
+                request.UserId = alexaRequest.Session.User.UserId;
+                request.IsNew = alexaRequest.Session.New;
+                request.Version = alexaRequest.Version;
+                request.Type = alexaRequest.Request.Type;
+                request.Reason = alexaRequest.Request.Reason;
+                request.SlotsList = alexaRequest.Request.Intent.GetSlots();
+                request.DateCreated = DateTime.UtcNow;
 
-                    break;
-                case "IntentRequest":
-                    response = IntentRequestHandler(request);
+                switch (request.Type)
+                {
+                    case "LaunchRequest":
+                        response = LaunchRequestHandler(request);
 
-                    break;
-                case "SessionEndedRequest":
-                    response = SessionEndedRequestHandler(request);
+                        break;
+                    case "IntentRequest":
+                        response = IntentRequestHandler(request);
 
-                    break;
+                        break;
+                    case "SessionEndedRequest":
+                        response = SessionEndedRequestHandler(request);
+
+                        break;
+                }
+
+                return response;
             }
-
-            return response;
+            else
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         private Hashtable getTombola()
