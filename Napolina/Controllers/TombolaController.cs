@@ -1,9 +1,7 @@
 ﻿using Napolina.Data;
 using System;
-using System.Collections.Generic;
 using System.Collections;
 using System.Web.Http;
-using AlexaSkillsKit.Authentication;
 using System.Net.Http;
 using System.Net;
 
@@ -16,7 +14,10 @@ namespace Napolina.Controllers
         {
             AlexaResponse response = null;
 
-            if(SpeechletRequestSignatureVerifier.VerifyCertificateUrl(this.Request.RequestUri.AbsoluteUri))
+            var speechlet = new SessionSpeechLet();
+            HttpResponseMessage check = speechlet.GetResponse(Request);
+
+            if (check.StatusCode.Equals(HttpStatusCode.OK))
             {
                 Request request = new Data.Request();
                 request.MemberId = (alexaRequest.Session.Attributes == null) ? 0 : alexaRequest.Session.Attributes.MemberId;
@@ -58,7 +59,7 @@ namespace Napolina.Controllers
         private Hashtable getTombola()
         {
             Hashtable tombola = new Hashtable();
-            tombola.Add(1, "Italy");
+            tombola.Add(1, "Italia. Italy.");
             tombola.Add(2, "A criatura. The child.");
             tombola.Add(3, "A jatta. The cat.");
             tombola.Add(4, "O puork. The pig.");
