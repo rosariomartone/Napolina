@@ -14,22 +14,20 @@ namespace Napolina.Controllers
         {
             AlexaResponse response = null;
 
-            //var speechlet = new SessionSpeechLet();
-            //HttpResponseMessage check = null;
+            var speechlet = new SessionSpeechLet();
+            HttpResponseMessage check = null;
 
-            //try
-            //{
-            //    HttpResponseMessage message = new HttpResponseMessage();
-            //    message.Headers=alexaRequest.Request.
-            //    check = speechlet.GetResponse(Request);
-            //}
-            //catch(Exception ex)
-            //{
-            //    check = new HttpResponseMessage(HttpStatusCode.Conflict);
-            //}
+            try
+            {
+                check = speechlet.GetResponse(Request);
+            }
+            catch (Exception ex)
+            {
+                check = new HttpResponseMessage(HttpStatusCode.Conflict);
+            }
 
-            //if (check.StatusCode.Equals(HttpStatusCode.OK))
-            //{
+            if (check.StatusCode.Equals(HttpStatusCode.OK))
+            {
                 Request request = new Data.Request();
                 request.MemberId = (alexaRequest.Session.Attributes == null) ? 0 : alexaRequest.Session.Attributes.MemberId;
                 request.Timestamp = alexaRequest.Request.Timestamp;
@@ -62,9 +60,9 @@ namespace Napolina.Controllers
                 }
 
                 return response;
-            //}
-            //else
-            //    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+            else
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         private Hashtable getTombola()
@@ -91,8 +89,8 @@ namespace Napolina.Controllers
             tombola.Add(19, "A risa. The laughter.");
             tombola.Add(20, "A festa. The party.");
             tombola.Add(21, "A femmena annura. The naked woman.");
-            tombola.Add(22, "O pazze. The mad man.");
-            tombola.Add(23, "O scem. The stupid man.");
+            tombola.Add(22, "O puz. The mad man.");
+            tombola.Add(23, "O shem. The stupid man.");
             tombola.Add(24, "E guardie. The guards.");
             tombola.Add(25, "Natale. Christmas");
             tombola.Add(26, "Nanninella. Little Annie.");
