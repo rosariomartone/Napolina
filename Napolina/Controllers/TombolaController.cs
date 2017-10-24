@@ -168,7 +168,7 @@ namespace Napolina.Controllers
             response.Session.MemberId = request.MemberId;
             response.Response.Card.Title = "Tombola Naples";
             response.Response.Card.Content = "Hello\nTombola Nales!";
-            response.Response.Reprompt.OutputSpeech.Text = "Jamme, catch stu number!";
+            response.Response.Reprompt.OutputSpeech.Text = "Come on, give me a number!";
             response.Response.ShouldEndSession = false;
 
             return response;
@@ -223,9 +223,9 @@ namespace Napolina.Controllers
             if (number > 0 && number < 91)
                 response = new AlexaResponse(tombola[number].ToString() + ". Give me another number please", false);
             else
-                response = new AlexaResponse("Stupid, o nummer deve sta tra uno e nuvant!", false);
+                response = new AlexaResponse("Hey, number must be between 1 and 90!", false);
 
-            response.Response.Reprompt.OutputSpeech.Text = "Jamme, catch stu number!";
+            response.Response.Reprompt.OutputSpeech.Text = "Come on, give me a number!";
 
             return response;
         }
