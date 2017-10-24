@@ -14,20 +14,20 @@ namespace Napolina.Controllers
         {
             AlexaResponse response = null;
 
-            var speechlet = new SessionSpeechLet();
-            HttpResponseMessage check = null;
+            //var speechlet = new SessionSpeechLet();
+            //HttpResponseMessage check = null;
 
-            try
-            {
-                check = speechlet.GetResponse(Request);
-            }
-            catch (Exception ex)
-            {
-                check = new HttpResponseMessage(HttpStatusCode.Conflict);
-            }
+            //try
+            //{
+            //    check = speechlet.GetResponse(Request);
+            //}
+            //catch (Exception ex)
+            //{
+            //    check = new HttpResponseMessage(HttpStatusCode.Conflict);
+            //}
 
-            if (check.StatusCode.Equals(HttpStatusCode.OK))
-            {
+            //if (check.StatusCode.Equals(HttpStatusCode.OK))
+            //{
                 Request request = new Data.Request();
                 request.MemberId = (alexaRequest.Session.Attributes == null) ? 0 : alexaRequest.Session.Attributes.MemberId;
                 request.Timestamp = alexaRequest.Request.Timestamp;
@@ -60,9 +60,9 @@ namespace Napolina.Controllers
                 }
 
                 return response;
-            }
-            else
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            //}
+            //else
+            //    return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         private Hashtable getTombola()
@@ -167,7 +167,7 @@ namespace Napolina.Controllers
            var response = new AlexaResponse("Welcome to Tombola Naples. Give me a number and I will translate it in napoletan classic Tombola");
             response.Session.MemberId = request.MemberId;
             response.Response.Card.Title = "Tombola Naples";
-            response.Response.Card.Content = "Hello\nTombola Nales!";
+            response.Response.Card.Content = "Hello\nTombola Naples!";
             response.Response.Reprompt.OutputSpeech.Text = "Come on, give me a number!";
             response.Response.ShouldEndSession = false;
 
