@@ -30,7 +30,7 @@ namespace Napolina.Controllers
             request.AddParameter("productID", "BlueAlexa");
             request.AddParameter("deviceSerialNumber", "ROS-MOBILE");
             request.AddParameter("response_type", "token");
-            request.AddParameter("redirect_uri", "http://localhost:63110/AlexaHome"); 
+            request.AddParameter("redirect_uri", "https://www.rosariomartone.co.uk/AlexaHome"); 
 
             IRestResponse response = client.Execute(request);
 
