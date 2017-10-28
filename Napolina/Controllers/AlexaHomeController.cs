@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Web.Mvc;
@@ -26,12 +27,12 @@ namespace Napolina.Controllers
             var client = new RestClient("https://www.amazon.com/ap/oa");
 
             var request = new RestRequest(Method.POST);
-            request.AddParameter("client_id", "amzn1.application-oa2-client.e6bc904be18e4a50930bf88fa678e5b0");
+            request.AddParameter("client_id", ConfigurationManager.AppSettings["alex_client_id"]);
             request.AddParameter("scope", "alexa:all");
-            request.AddParameter("productID", "BlueAlexa");
-            request.AddParameter("deviceSerialNumber", "ROS-MOBILE");
+            request.AddParameter("productID", ConfigurationManager.AppSettings["alex_productID"]);
+            request.AddParameter("deviceSerialNumber", ConfigurationManager.AppSettings["alex_deviceSerialNumber"]);
             request.AddParameter("response_type", "token");
-            request.AddParameter("redirect_uri", "http://localhost:63110/StoreToken"); 
+            request.AddParameter("redirect_uri", ConfigurationManager.AppSettings["alex_redirect_uri"]); 
 
             IRestResponse response = client.Execute(request);
 
@@ -41,18 +42,6 @@ namespace Napolina.Controllers
                 content = response.Content;
 
             return content;
-        }
-
-        [Route(Name = "StoreToken")]
-        public ActionResult StoreToken()
-        {
-            //var model = new HomeViewModel();
-
-            //model.OaDownloads = Db.GetAllActiveDownloads().FindAll(x => x.Type == "OA");
-            //model.ExpenseDownloads = Db.GetAllActiveDownloads().FindAll(x => x.Type == "EXPENSES");
-
-            //return View(model);
-            return View();
         }
     }
 }
