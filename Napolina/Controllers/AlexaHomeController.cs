@@ -9,6 +9,7 @@ namespace Napolina.Controllers
 {
     public class AlexaHomeController : Controller
     {
+        [Route(Name = "Index")]
         public ContentResult Index()
         {
             ViewBag.Title = "Alexa Home Page";
@@ -30,7 +31,7 @@ namespace Napolina.Controllers
             request.AddParameter("productID", "BlueAlexa");
             request.AddParameter("deviceSerialNumber", "ROS-MOBILE");
             request.AddParameter("response_type", "token");
-            request.AddParameter("redirect_uri", "https://www.rosariomartone.co.uk/AlexaHome"); 
+            request.AddParameter("redirect_uri", "http://localhost:63110/StoreToken"); 
 
             IRestResponse response = client.Execute(request);
 
@@ -40,6 +41,18 @@ namespace Napolina.Controllers
                 content = response.Content;
 
             return content;
+        }
+
+        [Route(Name = "StoreToken")]
+        public ActionResult StoreToken()
+        {
+            //var model = new HomeViewModel();
+
+            //model.OaDownloads = Db.GetAllActiveDownloads().FindAll(x => x.Type == "OA");
+            //model.ExpenseDownloads = Db.GetAllActiveDownloads().FindAll(x => x.Type == "EXPENSES");
+
+            //return View(model);
+            return View();
         }
     }
 }
