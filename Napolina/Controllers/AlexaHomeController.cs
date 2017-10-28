@@ -30,7 +30,7 @@ namespace Napolina.Controllers
             request.AddParameter("client_id", ConfigurationManager.AppSettings["alex_client_id"]);
             request.AddParameter("scope", "alexa:all");
             request.AddParameter("productID", ConfigurationManager.AppSettings["alex_productID"]);
-            request.AddParameter("deviceSerialNumber", ConfigurationManager.AppSettings["alex_deviceSerialNumber"]);
+            //request.AddParameter("deviceSerialNumber", ConfigurationManager.AppSettings["alex_deviceSerialNumber"]);
             request.AddParameter("response_type", "token");
             request.AddParameter("redirect_uri", ConfigurationManager.AppSettings["alex_redirect_uri"]); 
 
